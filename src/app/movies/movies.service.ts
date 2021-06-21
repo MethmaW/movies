@@ -19,6 +19,8 @@ interface DetailsType {
 export class MoviesService {
 	constructor(private http: HttpClient) {}
 
+	//TODO Pull the url and the api key to an env file
+
 	//receiving the searched index from the movie-home component and fetching data from the API
 	search(term: string) {
 		return this.http

@@ -1,17 +1,31 @@
-<div>
-	<img [src]="movie?.Poster" alt="" />
-	<p>{{ movie?.Title }}</p>
+<div class="card">
+	<div>
+		<img [src]="movie?.Poster" alt="" />
+	</div>
 
-	<p>Plot{{ details?.Plot }}</p>
-	<p>Actors{{ details?.Actors }}</p>
+	<div class="details">
+		<p class="movieTitle">{{ movie?.Title }}</p>
 
-	<ul>
-		<li *ngFor="let rating of details?.Ratings">
-			Rating{{ rating.Source + ": " + rating.Value }}
-		</li>
-	</ul>
+		<div *ngIf="showDetails">
+			<p>Plot{{ details?.Plot }}</p>
+			<p>Actors{{ details?.Actors }}</p>
 
-	<p>{{ movie?.Year }}</p>
+			<ul>
+				<li *ngFor="let rating of details?.Ratings">
+					Rating{{ rating.Source + ": " + rating.Value }}
+				</li>
+			</ul>
+		</div>
 
-	<button (click)="moreDetails(movie.imdbID)">Details</button>
+		<div class="card-bottom">
+			<div class="card-bottom-1">
+				<p>{{ movie?.Year }}</p>
+			</div>
+			<div class="card-bottom-2">
+				<button class="btn" (click)="moreDetails(movie.imdbID)">
+					{{ btnText }}
+				</button>
+			</div>
+		</div>
+	</div>
 </div>

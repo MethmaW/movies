@@ -1,5 +1,13 @@
-<div>
-	<div *ngFor="let movie of movies">
-		<app-movie-card [movie]="movie"></app-movie-card>
+<!-- TODO pagination -->
+<div class="row">
+	<div
+		[ngClass]="{ extract: show(movieId, movie.imdbID) }"
+		class="column"
+		*ngFor="let movie of movies"
+	>
+		<app-movie-card
+			(extract)="extractMovie($event)"
+			[movie]="movie"
+		></app-movie-card>
 	</div>
 </div>

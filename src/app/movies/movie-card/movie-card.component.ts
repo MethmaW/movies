@@ -7,10 +7,15 @@ interface MovieType {
 	Poster: string;
 	imdbID: string;
 }
-interface Details {
+interface DetailsType {
 	Plot: string;
 	Actors: string;
 	Ratings: { Source: string; Value: string }[];
+}
+
+interface extractType {
+	id: string;
+	show: boolean;
 }
 
 @Component({
@@ -25,8 +30,11 @@ export class MovieCardComponent implements OnInit {
 		Poster: "",
 		imdbID: "",
 	};
+	@Output() extract = new EventEmitter<extractType>();
 
-	details: Details = { Plot: "", Actors: "", Ratings: [] };
+	btnText: string = "Details";
+	showDetails: boolean = false;
+	details: DetailsType = { Plot: "", Actors: "", Ratings: [] };
 
 	constructor(private movies: MoviesService) {}
 
@@ -37,9 +45,18 @@ export class MovieCardComponent implements OnInit {
 	//sending the id of the movie as an argument of the search function
 	//assigning the response to the details property
 	moreDetails(id: string) {
-		console.log(id);
-		this.movies.getDetails(id).subscribe((response) => {
-			this.details = response;
-		});
+		if (this.btnText === "Details") {
+			this.movies.getDetails(id).subscribe((response) => {
+				this.details = response;
+			});
+
+			this.extract.emit({ id: id, show: true });
+			this.btnText = "Hide";
+			this.showDetails = true;
+		} else {
+			this.extract.emit({ id: id, show: false });
+			this.btnText = "Details";
+			this.showDetails = false;
+		}
 	}
 }

@@ -1,1 +1,20 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+	font-family: Montserrat;
+	src: url(assets/fonts/Montserrat/Montserrat-Regular.ttf) format("opentype");
+}
+
+body {
+	font-family: "Montserrat";
+	margin: 0;
+}
+
+.btn {
+	background-color: #307cfb;
+	border: none;
+	color: white;
+	font-family: Montserrat;
+	padding: 5px;
+	border-radius: 3px;
+	font-weight: bolder;
+	font-size: 11px;
+}

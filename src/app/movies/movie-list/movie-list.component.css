@@ -1,0 +1,25 @@
+.row {
+	display: flex;
+	flex-wrap: wrap;
+	padding: 3% 10%;
+}
+
+.column {
+	flex-grow: 0;
+	width: 48%;
+	padding: 2% 1% 0 1%;
+}
+
+.extract {
+	width: 98%;
+}
+
+@media screen and (max-width: 800px) {
+	.row {
+		flex-direction: column;
+	}
+
+	.column {
+		width: 100%;
+	}
+}

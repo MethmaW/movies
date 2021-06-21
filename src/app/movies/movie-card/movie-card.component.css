@@ -1,0 +1,46 @@
+.card {
+	display: flex;
+	flex-direction: row;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	width: 100%;
+}
+
+/*TODO styles for the movie details*/
+.details {
+	width: 100%;
+	padding: 2%;
+	position: relative;
+}
+
+/* TODO border styles for the card bottom */
+
+.card-bottom {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+
+.card-bottom-1 {
+	grid-column-start: 1;
+}
+.card-bottom-2 {
+	position: relative;
+}
+
+.card-bottom-2 .btn {
+	position: absolute;
+	right: 15%;
+	top: 25%;
+}
+
+@media screen and (max-width: 800px) {
+	.card {
+		flex-direction: column;
+	}
+
+	.movieTitle {
+		margin-bottom: 20%;
+	}
+}

@@ -1,17 +1,21 @@
 <div class="navbar">
 	<div>
-		<p>OMDB Search</p>
+		<p class="title">OMDB Search</p>
 	</div>
 
-	<div>
+	<div class="search">
 		<form (submit)="onSubmitSearch($event)">
+			<label>Search a movie: </label>
+			<!-- TODO remove the default value in the input -->
 			<input
 				type="text"
 				#serachIndex
 				(input)="onChangeSearch(serachIndex.value)"
 				value="avengers"
+				class="input"
 			/>
-			<button type="submit">Search</button>
+			&nbsp;
+			<button class="btn" type="submit">&nbsp; SEARCH &nbsp;</button>
 		</form>
 	</div>
 </div>
