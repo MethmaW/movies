@@ -1,6 +1,12 @@
 import { Component, Input, Output, OnInit, EventEmitter } from "@angular/core";
 import { MoviesService } from "../movies.service";
 
+interface MovieType {
+	Title: string;
+	Year: string;
+	Poster: string;
+	imdbID: string;
+}
 interface Details {
 	Plot: string;
 	Actors: string;
@@ -13,7 +19,12 @@ interface Details {
 	styleUrls: ["./movie-card.component.css"],
 })
 export class MovieCardComponent implements OnInit {
-	@Input() movieDetails: any = {};
+	@Input() movie: MovieType = {
+		Title: "",
+		Year: "",
+		Poster: "",
+		imdbID: "",
+	};
 
 	details: Details = { Plot: "", Actors: "", Ratings: [] };
 

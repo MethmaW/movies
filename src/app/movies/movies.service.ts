@@ -1,6 +1,17 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { pluck } from "rxjs/operators";
+import { Title } from "@angular/platform-browser";
+
+interface movieListType {
+	Search: [{ Title: string; Year: string; Poster: string; imdbID: string }];
+}
+
+interface DetailsType {
+	Plot: string;
+	Actors: string;
+	Ratings: [{ Source: string; Value: string }];
+}
 
 @Injectable({
 	providedIn: "root",
@@ -10,7 +21,7 @@ export class MoviesService {
 
 	search(term: string) {
 		return this.http
-			.get<any>("http://www.omdbapi.com/?", {
+			.get<movieListType>("http://www.omdbapi.com/?", {
 				params: {
 					apikey: "360ea600",
 					s: term,
@@ -20,13 +31,11 @@ export class MoviesService {
 	}
 
 	getDetails(id: string) {
-		return this.http
-			.get<any>("http://www.omdbapi.com/?", {
-				params: {
-					apikey: "360ea600",
-					i: id,
-				},
-			})
-			.pipe();
+		return this.http.get<DetailsType>("http://www.omdbapi.com/?", {
+			params: {
+				apikey: "360ea600",
+				i: id,
+			},
+		});
 	}
 }
