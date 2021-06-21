@@ -1,0 +1,17 @@
+<div class="navbar">
+	<div>
+		<p>OMDB Search</p>
+	</div>
+
+	<div>
+		<form (submit)="onSubmitSearch($event)">
+			<input
+				type="text"
+				#serachIndex
+				(input)="onChangeSearch(serachIndex.value)"
+				value="avengers"
+			/>
+			<button type="submit">Search</button>
+		</form>
+	</div>
+</div>

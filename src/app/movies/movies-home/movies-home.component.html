@@ -1,0 +1,4 @@
+<app-search-bar (submitted)="onSearch($event)"></app-search-bar>
+<app-movie-list [movies]="moviesList"></app-movie-list>
+
+{{ moviesList | json }}

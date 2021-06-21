@@ -1,0 +1,15 @@
+<div>
+	<img [src]="movieDetails.Poster" alt="" />
+
+	<p>{{ movieDetails.Title }}</p>
+
+	<p>Plot{{ details.Plot }}</p>
+	<p>Actors{{ details.Actors }}</p>
+	<ul>
+		<li *ngFor="let rating of details.Ratings">
+			Rating{{ rating.Source + ": " + rating.Value }}
+		</li>
+	</ul>
+	<p>{{ movieDetails.Year }}</p>
+	<button (click)="moreDetails(movieDetails.imdbID)">Details</button>
+</div>
