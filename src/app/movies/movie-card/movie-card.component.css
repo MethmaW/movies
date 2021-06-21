@@ -41,6 +41,10 @@
 	}
 
 	.movieTitle {
+		margin-bottom: 15%;
+	}
+
+	.moreDetails {
 		margin-bottom: 20%;
 	}
 }
