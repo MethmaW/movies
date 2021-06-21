@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+	production: true,
+	omdbAPI: "http://www.omdbapi.com/?",
+	omdbAPIKey: "360ea600",
 };

@@ -32,7 +32,7 @@ export class MovieCardComponent implements OnInit {
 	};
 	@Output() extract = new EventEmitter<extractType>();
 
-	btnText: string = "Details";
+	btnText: string = "DETAILS";
 	showDetails: boolean = false;
 	details: DetailsType = { Plot: "", Actors: "", Ratings: [] };
 
@@ -40,22 +40,18 @@ export class MovieCardComponent implements OnInit {
 
 	ngOnInit(): void {}
 
-	//receiving the id passed from the details button
-	//subscribing to the getDetails function in the service
-	//sending the id of the movie as an argument of the search function
-	//assigning the response to the details property
 	moreDetails(id: string) {
-		if (this.btnText === "Details") {
+		if (this.btnText === "DETAILS") {
 			this.movies.getDetails(id).subscribe((response) => {
 				this.details = response;
 			});
 
 			this.extract.emit({ id: id, show: true });
-			this.btnText = "Hide";
+			this.btnText = "HIDE";
 			this.showDetails = true;
 		} else {
 			this.extract.emit({ id: id, show: false });
-			this.btnText = "Details";
+			this.btnText = "DETAILS";
 			this.showDetails = false;
 		}
 	}

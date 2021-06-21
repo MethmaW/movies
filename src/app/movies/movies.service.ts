@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { pluck, catchError } from "rxjs/operators";
-import { Title } from "@angular/platform-browser";
+import { environment } from "../../environments/environment";
 
 interface movieListType {
 	Search: { Title: string; Year: string; Poster: string; imdbID: string }[];
@@ -19,14 +19,12 @@ interface DetailsType {
 export class MoviesService {
 	constructor(private http: HttpClient) {}
 
-	//TODO Pull the url and the api key to an env file
-
 	//receiving the searched index from the movie-home component and fetching data from the API
 	search(term: string) {
 		return this.http
-			.get<movieListType>("http://www.omdbapi.com/?", {
+			.get<movieListType>(environment.omdbAPI, {
 				params: {
-					apikey: "360ea600",
+					apikey: environment.omdbAPIKey,
 					s: term,
 				},
 			})
@@ -34,9 +32,9 @@ export class MoviesService {
 	}
 
 	getDetails(id: string) {
-		return this.http.get<DetailsType>("http://www.omdbapi.com/?", {
+		return this.http.get<DetailsType>(environment.omdbAPI, {
 			params: {
-				apikey: "360ea600",
+				apikey: environment.omdbAPIKey,
 				i: id,
 			},
 		});

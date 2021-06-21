@@ -15,11 +15,14 @@
 	padding: 25px 0;
 }
 
-/* TODO make the input styling better */
-
 .input {
 	border: none;
 	border-bottom: 1px solid rgb(199, 195, 195);
+}
+
+.input:focus {
+	outline: none;
+	border-bottom: 2px solid #307cfb;
 }
 
 @media (max-width: 800px) {

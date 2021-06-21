@@ -7,19 +7,29 @@
 		<p class="movieTitle">{{ movie?.Title }}</p>
 
 		<div *ngIf="showDetails" class="moreDetails">
-			<p>Plot{{ details?.Plot }}</p>
-			<p>Actors{{ details?.Actors }}</p>
+			<div>
+				<span class="subTitle">Plot</span>
+				<p class="description">{{ details?.Plot }}</p>
+			</div>
 
-			<ul>
-				<li *ngFor="let rating of details?.Ratings">
-					Rating{{ rating.Source + ": " + rating.Value }}
-				</li>
-			</ul>
+			<div class="detailSections">
+				<span class="subTitle">Actors</span>
+				<p class="description">{{ details?.Actors }}</p>
+			</div>
+
+			<div class="detailSections">
+				<span class="subTitle">Ratings</span>
+				<ul class="description">
+					<li *ngFor="let rating of details?.Ratings">
+						Rating{{ rating.Source + ": " + rating.Value }}
+					</li>
+				</ul>
+			</div>
 		</div>
 
 		<div class="card-bottom">
 			<div class="card-bottom-1">
-				<p>{{ movie?.Year }}</p>
+				<p class="movieYear">{{ movie?.Year }}</p>
 			</div>
 			<div class="card-bottom-2">
 				<button class="btn" (click)="moreDetails(movie.imdbID)">

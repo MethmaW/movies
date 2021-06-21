@@ -5,14 +5,32 @@
 	width: 100%;
 }
 
-/*TODO styles for the movie details*/
+.movieTitle {
+	font-weight: bold;
+}
+
+.movieYear {
+	color: #b6c3cc;
+	padding-left: 5%;
+}
+
 .details {
 	width: 100%;
 	padding: 2%;
 	position: relative;
 }
 
-/* TODO border styles for the card bottom */
+.subTitle {
+	font-size: 11px;
+}
+
+.description {
+	margin: 0;
+}
+
+.detailSections {
+	margin-top: 3%;
+}
 
 .card-bottom {
 	display: grid;
@@ -20,6 +38,8 @@
 	position: absolute;
 	bottom: 0;
 	width: 100%;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	left: 0;
 }
 
 .card-bottom-1 {
