@@ -6,6 +6,7 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
 import { MovieListComponent } from './movie-list/movie-list.component';
 import { MoviesHomeComponent } from './movies-home/movies-home.component';
 import { MovieCardComponent } from './movie-card/movie-card.component';
+import { MessageComponent } from './message/message.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { MovieCardComponent } from './movie-card/movie-card.component';
     SearchBarComponent,
     MovieListComponent,
     MoviesHomeComponent,
-    MovieCardComponent
+    MovieCardComponent,
+    MessageComponent
   ],
   imports: [
     CommonModule,

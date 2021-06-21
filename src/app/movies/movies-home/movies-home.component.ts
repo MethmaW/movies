@@ -15,17 +15,18 @@ interface MoviesType {
 })
 export class MoviesHomeComponent implements OnInit {
 	moviesList: MoviesType[] = [];
+	message: string = "Welcome to OMDB Search, search something in the bar above!";
 
 	constructor(private movies: MoviesService) {}
 
 	ngOnInit(): void {}
 
-	//receiving the value passed from the search-bar component
-	//subscribing to the search function in the service
-	//sending the searched index as an argument of the search function
-	//assigning the response to the movieList property
 	onSearch(term: string) {
 		this.movies.search(term).subscribe((response) => {
+			if (response === undefined) {
+				this.message = "Movie not found!";
+			}
+
 			this.moviesList = response;
 		});
 	}

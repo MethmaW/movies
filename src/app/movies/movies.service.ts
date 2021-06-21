@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { pluck } from "rxjs/operators";
+import { pluck, catchError } from "rxjs/operators";
 import { Title } from "@angular/platform-browser";
 
 interface movieListType {
