@@ -1,5 +1,4 @@
 import { Component, OnInit, EventEmitter, Output } from "@angular/core";
-
 @Component({
 	selector: "app-search-bar",
 	templateUrl: "./search-bar.component.html",
@@ -20,7 +19,8 @@ export class SearchBarComponent implements OnInit {
 
 	onSubmitSearch(event: Event) {
 		event.preventDefault();
-		console.log("searching");
+
+		//sending the searched index to the movies-home component
 		this.submitted.emit(this.searchIndex);
 	}
 }

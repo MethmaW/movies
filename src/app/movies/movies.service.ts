@@ -4,13 +4,13 @@ import { pluck } from "rxjs/operators";
 import { Title } from "@angular/platform-browser";
 
 interface movieListType {
-	Search: [{ Title: string; Year: string; Poster: string; imdbID: string }];
+	Search: { Title: string; Year: string; Poster: string; imdbID: string }[];
 }
 
 interface DetailsType {
 	Plot: string;
 	Actors: string;
-	Ratings: [{ Source: string; Value: string }];
+	Ratings: { Source: string; Value: string }[];
 }
 
 @Injectable({
@@ -19,6 +19,7 @@ interface DetailsType {
 export class MoviesService {
 	constructor(private http: HttpClient) {}
 
+	//receiving the searched index from the movie-home component and fetching data from the API
 	search(term: string) {
 		return this.http
 			.get<movieListType>("http://www.omdbapi.com/?", {

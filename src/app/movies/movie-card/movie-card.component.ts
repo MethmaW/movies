@@ -32,6 +32,10 @@ export class MovieCardComponent implements OnInit {
 
 	ngOnInit(): void {}
 
+	//receiving the id passed from the details button
+	//subscribing to the getDetails function in the service
+	//sending the id of the movie as an argument of the search function
+	//assigning the response to the details property
 	moreDetails(id: string) {
 		console.log(id);
 		this.movies.getDetails(id).subscribe((response) => {

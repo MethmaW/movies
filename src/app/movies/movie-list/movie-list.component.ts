@@ -13,6 +13,7 @@ interface MoviesType {
 	styleUrls: ["./movie-list.component.css"],
 })
 export class MovieListComponent implements OnInit {
+	//receiving the movies from movie-home
 	@Input() movies: MoviesType[] = [];
 
 	constructor() {}

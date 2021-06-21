@@ -20,6 +20,10 @@ export class MoviesHomeComponent implements OnInit {
 
 	ngOnInit(): void {}
 
+	//receiving the value passed from the search-bar component
+	//subscribing to the search function in the service
+	//sending the searched index as an argument of the search function
+	//assigning the response to the movieList property
 	onSearch(term: string) {
 		this.movies.search(term).subscribe((response) => {
 			this.moviesList = response;
