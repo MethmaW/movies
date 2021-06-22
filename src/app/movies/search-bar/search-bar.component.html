@@ -4,17 +4,49 @@
 	</div>
 
 	<div class="search">
-		<form (submit)="onSubmitSearch($event)">
+		<form [formGroup]="searchForm" (submit)="onSubmitSearch($event)">
 			<label>Search a movie: </label>
 
 			<input
 				type="text"
-				#serachIndex
-				(input)="onChangeSearch(serachIndex.value)"
 				class="input"
+				[formControl]="$any(searchForm.controls.movieName)"
 			/>
 			&nbsp;
-			<button class="btn" type="submit">&nbsp; SEARCH &nbsp;</button>
+			<button
+				[disabled]="searchForm.invalid"
+				[ngClass]="{ disable: searchForm.invalid }"
+				class="btn"
+				type="submit"
+			>
+				&nbsp; SEARCH &nbsp;
+			</button>
+
+			<div
+				*ngIf="
+					searchForm.controls.movieName.errors?.required &&
+					searchForm.controls.movieName.touched
+				"
+				class="help is-danger"
+			>
+				<p class="errorMessage">Value is required</p>
+			</div>
+
+			<div
+				*ngIf="
+					searchForm.controls.movieName.errors?.minlength &&
+					searchForm.controls.movieName.touched
+				"
+				class="help is-danger"
+			>
+				<p class="errorMessage">
+					Value you entered is
+					{{ searchForm.controls.movieName.errors?.minlength.actualLength }}
+					characters long, But it must be at least
+					{{ searchForm.controls.movieName.errors?.minlength.requiredLength }}
+					characters long.
+				</p>
+			</div>
 		</form>
 	</div>
 </div>
