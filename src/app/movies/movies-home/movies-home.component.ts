@@ -25,6 +25,7 @@ export class MoviesHomeComponent implements OnInit {
 		let storedMovieName = localStorage.getItem("lastMovie");
 		if (storedMovieName) {
 			this.onSearch(storedMovieName);
+			history.pushState("", "", "/movies/search/" + storedMovieName);
 		}
 	}
 
