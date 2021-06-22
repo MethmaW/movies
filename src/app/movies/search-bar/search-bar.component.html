@@ -4,7 +4,10 @@
 	</div>
 
 	<div class="search">
-		<form [formGroup]="searchForm" (submit)="onSubmitSearch($event)">
+		<form
+			[formGroup]="searchForm"
+			(submit)="onSubmitSearch(searchForm.controls.movieName.value)"
+		>
 			<label>Search a movie: </label>
 
 			<input
