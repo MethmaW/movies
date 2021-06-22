@@ -13,7 +13,6 @@ interface MoviesType {
 	styleUrls: ["./movie-list.component.css"],
 })
 export class MovieListComponent implements OnInit {
-	//receiving the movies from movie-home
 	@Input() movies: MoviesType[] = [];
 
 	movieId: string = "";
@@ -23,6 +22,7 @@ export class MovieListComponent implements OnInit {
 
 	ngOnInit(): void {}
 
+	//handling the visibility of the card - to show or hide more details
 	show(targetMovie: string, currentMovie: string) {
 		if (targetMovie === currentMovie && this.extract) {
 			return true;
@@ -31,6 +31,7 @@ export class MovieListComponent implements OnInit {
 		}
 	}
 
+	//receiving the id of the movie that the user needs to see more details or hide details
 	extractMovie(value: { id: string; show: boolean }) {
 		this.movieId = value.id;
 		this.extract = value.show;

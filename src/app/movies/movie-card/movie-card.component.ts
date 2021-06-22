@@ -40,6 +40,7 @@ export class MovieCardComponent implements OnInit {
 
 	ngOnInit(): void {}
 
+	//sending the id of the movie to the parent component to view more or less details
 	moreDetails(id: string) {
 		if (this.btnText === "DETAILS") {
 			this.movies.getDetails(id).subscribe((response) => {

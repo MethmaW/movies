@@ -5,8 +5,4 @@ import { Component } from "@angular/core";
 	templateUrl: "./app.component.html",
 	styleUrls: ["./app.component.css"],
 })
-
-// TODO Add more comments
-export class AppComponent {
-	title = "movies";
-}
+export class AppComponent {}

@@ -19,7 +19,7 @@ interface DetailsType {
 export class MoviesService {
 	constructor(private http: HttpClient) {}
 
-	//receiving the searched index from the movie-home component and fetching data from the API
+	//getting a list of movies according to the user input
 	search(term: string) {
 		return this.http
 			.get<movieListType>(environment.omdbAPI, {
@@ -31,6 +31,7 @@ export class MoviesService {
 			.pipe(pluck("Search"));
 	}
 
+	//getting more details about one movie
 	getDetails(id: string) {
 		return this.http.get<DetailsType>(environment.omdbAPI, {
 			params: {

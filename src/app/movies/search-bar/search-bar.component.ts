@@ -13,14 +13,14 @@ export class SearchBarComponent implements OnInit {
 
 	ngOnInit(): void {}
 
+	//changing value of the search input
 	onChangeSearch(value: string) {
 		this.searchIndex = value;
 	}
 
+	//passing the value to the parent (movies-home) with the serach index to call the service
 	onSubmitSearch(event: Event) {
 		event.preventDefault();
-
-		//sending the searched index to the movies-home component
 		this.submitted.emit(this.searchIndex);
 	}
 }

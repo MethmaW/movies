@@ -6,12 +6,11 @@
 	<div class="search">
 		<form (submit)="onSubmitSearch($event)">
 			<label>Search a movie: </label>
-			<!-- TODO remove the default value in the input -->
+
 			<input
 				type="text"
 				#serachIndex
 				(input)="onChangeSearch(serachIndex.value)"
-				value="avengers"
 				class="input"
 			/>
 			&nbsp;

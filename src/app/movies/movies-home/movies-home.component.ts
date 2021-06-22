@@ -21,6 +21,7 @@ export class MoviesHomeComponent implements OnInit {
 
 	ngOnInit(): void {}
 
+	//calling the service to fetch a list of movies
 	onSearch(term: string) {
 		this.movies.search(term).subscribe((response) => {
 			if (response === undefined) {
