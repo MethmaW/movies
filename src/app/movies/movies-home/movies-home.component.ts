@@ -21,8 +21,17 @@ export class MoviesHomeComponent implements OnInit {
 
 	ngOnInit(): void {}
 
+	ngAfterContentInit() {
+		let storedMovieName = localStorage.getItem("lastMovie");
+		if (storedMovieName) {
+			this.onSearch(storedMovieName);
+		}
+	}
+
 	//calling the service to fetch a list of movies
 	onSearch(term: string) {
+		localStorage.setItem("lastMovie", term);
+
 		this.movies.search(term).subscribe((response) => {
 			if (response === undefined) {
 				this.message = "Movie not found!";
