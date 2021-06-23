@@ -1,11 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
-
-interface MoviesType {
-	Title: string;
-	Year: string;
-	Poster: string;
-	imdbID: string;
-}
+import { Movies } from "../../shared/models/movies.model";
 
 @Component({
 	selector: "app-movie-list",
@@ -13,7 +7,7 @@ interface MoviesType {
 	styleUrls: ["./movie-list.component.css"],
 })
 export class MovieListComponent implements OnInit {
-	@Input() movies: MoviesType[] = [];
+	@Input() movies: Movies[] = [];
 
 	movieId: string = "";
 	extract: boolean = false;

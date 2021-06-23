@@ -2,9 +2,10 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { pluck, catchError } from "rxjs/operators";
 import { environment } from "../../environments/environment";
+import { Movies } from "../shared/models/movies.model";
 
 interface movieListType {
-	Search: { Title: string; Year: string; Poster: string; imdbID: string }[];
+	Search: Movies[];
 }
 
 interface DetailsType {

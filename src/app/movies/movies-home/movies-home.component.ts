@@ -1,12 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { MoviesService } from "../movies.service";
-
-interface MoviesType {
-	Title: string;
-	Year: string;
-	Poster: string;
-	imdbID: string;
-}
+import { Movies } from "../../shared/models/movies.model";
 
 @Component({
 	selector: "app-movies-home",
@@ -14,7 +8,7 @@ interface MoviesType {
 	styleUrls: ["./movies-home.component.css"],
 })
 export class MoviesHomeComponent implements OnInit {
-	moviesList: MoviesType[] = [];
+	moviesList: Movies[] = [];
 	message: string = "Welcome to OMDB Search, search something in the bar above!";
 
 	constructor(private movies: MoviesService) {}
