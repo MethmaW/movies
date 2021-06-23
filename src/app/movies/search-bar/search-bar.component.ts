@@ -23,7 +23,7 @@ export class SearchBarComponent implements OnInit {
 
 	//passing the value to the parent (movies-home) with the serach index to call the service
 	onSubmitSearch(name: string) {
-		history.pushState("", "", "/movies/search/" + name);
+		localStorage.setItem("lastMovie", name);
 		this.submitted.emit(name);
 	}
 }

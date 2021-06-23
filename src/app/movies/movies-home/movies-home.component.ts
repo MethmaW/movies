@@ -10,22 +10,21 @@ import { Movies } from "../../shared/models/movies.model";
 export class MoviesHomeComponent implements OnInit {
 	moviesList: Movies[] = [];
 	message: string = "Welcome to OMDB Search, search something in the bar above!";
+	showMessage: boolean = false;
 
 	constructor(private movies: MoviesService) {}
 
-	ngOnInit(): void {}
-
-	ngAfterContentInit() {
-		let storedMovieName = localStorage.getItem("lastMovie");
-		if (storedMovieName) {
-			this.onSearch(storedMovieName);
-			history.pushState("", "", "/movies/search/" + storedMovieName);
+	ngOnInit(): void {
+		let pathname = window.location.pathname;
+		console.log("path", pathname);
+		if (pathname !== "/movies") {
+			this.showMessage = true;
 		}
 	}
 
 	//calling the service to fetch a list of movies
 	onSearch(term: string) {
-		localStorage.setItem("lastMovie", term);
+		// localStorage.setItem("lastMovie", term);
 
 		this.movies.search(term).subscribe((response) => {
 			if (response === undefined) {

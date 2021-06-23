@@ -1,5 +1,8 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Movies } from "../../shared/models/movies.model";
+import { ActivatedRoute } from "@angular/router";
+import { MoviesService } from "../movies.service";
+import { Router } from "@angular/router";
 
 @Component({
 	selector: "app-movie-list",
@@ -11,10 +14,24 @@ export class MovieListComponent implements OnInit {
 
 	movieId: string = "";
 	extract: boolean = false;
+	name: string = "";
 
-	constructor() {}
+	constructor(
+		private route: ActivatedRoute,
+		private moviesL: MoviesService,
+		router: Router
+	) {
+		router.events.subscribe((val) => {
+			let id = this.route.snapshot.paramMap.get("name");
+			this.onSearch(id);
+		});
+	}
 
-	ngOnInit(): void {}
+	ngOnInit(): void {
+		let id = this.route.snapshot.paramMap.get("name");
+		this.name = id;
+		this.onSearch(id);
+	}
 
 	//handling the visibility of the card - to show or hide more details
 	show(targetMovie: string, currentMovie: string) {
@@ -29,5 +46,19 @@ export class MovieListComponent implements OnInit {
 	extractMovie(value: { id: string; show: boolean }) {
 		this.movieId = value.id;
 		this.extract = value.show;
+	}
+
+	onSearch(term) {
+		// localStorage.setItem("lastMovie", term);
+
+		this.moviesL.search(term).subscribe((response) => {
+			// if (response === undefined) {
+			// 	this.message = "Movie not found!";
+			// }
+
+			this.movies = response;
+
+			console.log("res", response);
+		});
 	}
 }
