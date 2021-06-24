@@ -13,7 +13,11 @@
 
 			&nbsp;
 
-			<a [routerLink]="['./', searchForm.controls.movieName.value]">
+			<a
+				[ngClass]="{ disable: searchForm.invalid }"
+				(click)="onSubmitSearch(searchForm.controls.movieName.value)"
+				[routerLink]="['./', searchForm.controls.movieName.value]"
+			>
 				<button
 					[disabled]="searchForm.invalid"
 					[ngClass]="{ disable: searchForm.invalid }"
@@ -21,8 +25,8 @@
 					type="submit"
 				>
 					&nbsp; SEARCH &nbsp;
-				</button></a
-			>
+				</button>
+			</a>
 
 			<div class="errorMessage" *ngIf="showErrors()">
 				<p *ngIf="searchForm.get('movieName').errors.required">Value is required</p>
