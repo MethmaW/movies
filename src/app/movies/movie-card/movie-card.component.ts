@@ -20,6 +20,7 @@ export class MovieCardComponent implements OnInit {
 	btnText: string = "DETAILS";
 	showDetails: boolean = false;
 	details: Details = { Plot: "", Actors: "", Ratings: [] };
+	imgUrl: string = "../../../assets/images/no-img.jpg";
 
 	constructor(private movies: MoviesService) {}
 

@@ -18,7 +18,7 @@
 </ng-container>
 
 <div class="pagination">
-	<span href="#">&laquo;</span>
+	<span (click)="onSearch(currentMovieName, currentIndex - 1)">&laquo;</span>
 	<ng-container>
 		<span
 			*ngFor="let in of counter(5); let i = index"
@@ -27,5 +27,5 @@
 			>{{ i + 1 }}</span
 		>
 	</ng-container>
-	<span href="#">&raquo;</span>
+	<span (click)="onSearch(currentMovieName, currentIndex + 1)">&raquo;</span>
 </div>

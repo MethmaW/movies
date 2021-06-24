@@ -1,10 +1,16 @@
 <div class="card">
 	<div>
-		<img [src]="movie?.Poster" alt="" />
+		<img
+			[ngClass]="{ default: movie?.Poster === 'N/A' }"
+			[src]="movie?.Poster !== 'N/A' ? movie?.Poster : imgUrl"
+			alt=""
+		/>
 	</div>
 
 	<div class="details">
-		<p class="movieTitle">{{ movie?.Title }}</p>
+		<p class="movieTitle">
+			{{ movie?.Title }}
+		</p>
 
 		<div *ngIf="showDetails" class="moreDetails">
 			<div>
