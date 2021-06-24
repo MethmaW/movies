@@ -1,0 +1,14 @@
+.initialDiv {
+	width: 60%;
+	text-align: center;
+	margin: 5% 20% 0 20%;
+	padding: 1% 0 1% 0;
+	background-color: #edf0f2;
+}
+
+.error {
+	background-color: #fdecf0;
+	border: 1px dashed #f54574;
+	color: #f54574;
+	font-weight: bold;
+}

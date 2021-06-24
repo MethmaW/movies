@@ -1,12 +1,18 @@
-<div class="row">
-	<div
-		[ngClass]="{ extract: show(movieId, movie.imdbID) }"
-		class="column"
-		*ngFor="let movie of movies"
-	>
-		<app-movie-card
-			(extract)="extractMovie($event)"
-			[movie]="movie"
-		></app-movie-card>
+<ng-container *ngIf="movies !== undefined || null">
+	<div class="row">
+		<div
+			[ngClass]="{ extract: show(movieId, movie.imdbID) }"
+			class="column"
+			*ngFor="let movie of movies"
+		>
+			<app-movie-card
+				(extract)="extractMovie($event)"
+				[movie]="movie"
+			></app-movie-card>
+		</div>
 	</div>
-</div>
+</ng-container>
+
+<ng-container *ngIf="movies === undefined || null">
+	<app-message [type]="'error'">Movie not found!</app-message>
+</ng-container>

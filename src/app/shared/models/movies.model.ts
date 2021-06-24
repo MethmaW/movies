@@ -1,4 +1,4 @@
-export class Movies {
+export interface Movies {
 	Title: string;
 	Year: string;
 	Poster: string;

@@ -9,6 +9,11 @@ import { MoviesHomeComponent } from "./movies-home/movies-home.component";
 import { MovieCardComponent } from "./movie-card/movie-card.component";
 import { MessageComponent } from "./message/message.component";
 
+import { SharedModule } from "../shared/shared.module";
+import { LandingPageComponent } from "./landing-page/landing-page.component";
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
+import { CustomHttpInterceptor } from "../helper/custom-http-interceptor";
+
 @NgModule({
 	declarations: [
 		SearchBarComponent,
@@ -16,7 +21,20 @@ import { MessageComponent } from "./message/message.component";
 		MoviesHomeComponent,
 		MovieCardComponent,
 		MessageComponent,
+		LandingPageComponent,
 	],
-	imports: [CommonModule, MoviesRoutingModule, ReactiveFormsModule],
+	imports: [
+		CommonModule,
+		MoviesRoutingModule,
+		ReactiveFormsModule,
+		SharedModule,
+	],
+	providers: [
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: CustomHttpInterceptor,
+			multi: true,
+		},
+	],
 })
 export class MoviesModule {}

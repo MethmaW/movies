@@ -1,17 +1,7 @@
 import { Component, Input, Output, OnInit, EventEmitter } from "@angular/core";
 import { MoviesService } from "../movies.service";
-
-interface MovieType {
-	Title: string;
-	Year: string;
-	Poster: string;
-	imdbID: string;
-}
-interface DetailsType {
-	Plot: string;
-	Actors: string;
-	Ratings: { Source: string; Value: string }[];
-}
+import { Movies } from "../../shared/models/movies.model";
+import { Details } from "../../shared/models/details.model";
 
 interface extractType {
 	id: string;
@@ -24,17 +14,12 @@ interface extractType {
 	styleUrls: ["./movie-card.component.css"],
 })
 export class MovieCardComponent implements OnInit {
-	@Input() movie: MovieType = {
-		Title: "",
-		Year: "",
-		Poster: "",
-		imdbID: "",
-	};
+	@Input() movie: Movies;
 	@Output() extract = new EventEmitter<extractType>();
 
 	btnText: string = "DETAILS";
 	showDetails: boolean = false;
-	details: DetailsType = { Plot: "", Actors: "", Ratings: [] };
+	details: Details = { Plot: "", Actors: "", Ratings: [] };
 
 	constructor(private movies: MoviesService) {}
 

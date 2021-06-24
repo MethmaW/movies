@@ -1,5 +1,9 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Movies } from "../../shared/models/movies.model";
+import { MoviesService } from "../movies.service";
+import { Router } from "@angular/router";
+import { filter } from "rxjs/operators";
+import { Event, ActivatedRoute, NavigationEnd } from "@angular/router";
 
 @Component({
 	selector: "app-movie-list",
@@ -7,12 +11,21 @@ import { Movies } from "../../shared/models/movies.model";
 	styleUrls: ["./movie-list.component.css"],
 })
 export class MovieListComponent implements OnInit {
-	@Input() movies: Movies[] = [];
-
+	movies: Movies[] = [];
 	movieId: string = "";
 	extract: boolean = false;
+	name: string = "";
 
-	constructor() {}
+	constructor(
+		private route: ActivatedRoute,
+		private moviesService: MoviesService,
+		private router: Router
+	) {
+		//detect as soon as the current url changes
+		this.router.events
+			.pipe(filter((event: Event) => event instanceof NavigationEnd))
+			.subscribe(() => this.onSearch(this.route.snapshot.paramMap.get("name")));
+	}
 
 	ngOnInit(): void {}
 
@@ -29,5 +42,19 @@ export class MovieListComponent implements OnInit {
 	extractMovie(value: { id: string; show: boolean }) {
 		this.movieId = value.id;
 		this.extract = value.show;
+	}
+
+	onSearch(term) {
+		// localStorage.setItem("lastMovie", term);
+
+		this.moviesService.search(term).subscribe((response) => {
+			// if (response === undefined) {
+			// 	this.message = "Movie not found!";
+			// }
+
+			this.movies = response;
+
+			console.log("res", response);
+		});
 	}
 }

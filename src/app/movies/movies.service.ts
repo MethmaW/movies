@@ -25,7 +25,6 @@ export class MoviesService {
 		return this.http
 			.get<movieListType>(environment.omdbAPI, {
 				params: {
-					apikey: environment.omdbAPIKey,
 					s: term,
 				},
 			})
@@ -36,7 +35,6 @@ export class MoviesService {
 	getDetails(id: string) {
 		return this.http.get<DetailsType>(environment.omdbAPI, {
 			params: {
-				apikey: environment.omdbAPIKey,
 				i: id,
 			},
 		});
