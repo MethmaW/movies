@@ -16,3 +16,16 @@
 <ng-container *ngIf="movies === undefined || null">
 	<app-message [type]="'error'">Movie not found!</app-message>
 </ng-container>
+
+<div class="pagination">
+	<span href="#">&laquo;</span>
+	<ng-container>
+		<span
+			*ngFor="let in of counter(5); let i = index"
+			(click)="onSearch(currentMovieName, i + 1)"
+			[ngClass]="{ active: currentIndex === i + 1 }"
+			>{{ i + 1 }}</span
+		>
+	</ng-container>
+	<span href="#">&raquo;</span>
+</div>

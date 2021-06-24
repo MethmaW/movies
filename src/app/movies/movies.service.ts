@@ -21,11 +21,12 @@ export class MoviesService {
 	constructor(private http: HttpClient) {}
 
 	//getting a list of movies according to the user input
-	search(term: string) {
+	search(term: string, pageId: number) {
 		return this.http
 			.get<movieListType>(environment.omdbAPI, {
 				params: {
 					s: term,
+					page: pageId,
 				},
 			})
 			.pipe(pluck("Search"));

@@ -14,7 +14,8 @@ export class MovieListComponent implements OnInit {
 	movies: Movies[] = [];
 	movieId: string = "";
 	extract: boolean = false;
-	name: string = "";
+	currentMovieName: string = "";
+	currentIndex = 1;
 
 	constructor(
 		private route: ActivatedRoute,
@@ -24,10 +25,16 @@ export class MovieListComponent implements OnInit {
 		//detect as soon as the current url changes
 		this.router.events
 			.pipe(filter((event: Event) => event instanceof NavigationEnd))
-			.subscribe(() => this.onSearch(this.route.snapshot.paramMap.get("name")));
+			.subscribe(() =>
+				this.onSearch(this.route.snapshot.paramMap.get("name"), this.currentIndex)
+			);
 	}
 
 	ngOnInit(): void {}
+
+	counter(i: number) {
+		return new Array(i);
+	}
 
 	//handling the visibility of the card - to show or hide more details
 	show(targetMovie: string, currentMovie: string) {
@@ -44,17 +51,15 @@ export class MovieListComponent implements OnInit {
 		this.extract = value.show;
 	}
 
-	onSearch(term) {
-		// localStorage.setItem("lastMovie", term);
+	onSearch(term, pageId) {
+		this.currentMovieName = term;
+		this.currentIndex = pageId;
 
-		this.moviesService.search(term).subscribe((response) => {
-			// if (response === undefined) {
-			// 	this.message = "Movie not found!";
-			// }
-
+		this.moviesService.search(term, pageId).subscribe((response) => {
 			this.movies = response;
-
 			console.log("res", response);
 		});
+
+		window.scrollTo({ top: 0, behavior: "smooth" });
 	}
 }
