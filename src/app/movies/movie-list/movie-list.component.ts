@@ -16,6 +16,7 @@ export class MovieListComponent implements OnInit {
 	extract: boolean = false;
 	currentMovieName: string = "";
 	currentIndex = 1;
+	initialPagination: number[] = [1, 2, 3, 4, 5];
 
 	constructor(
 		private route: ActivatedRoute,
@@ -25,16 +26,10 @@ export class MovieListComponent implements OnInit {
 		//detect as soon as the current url changes
 		this.router.events
 			.pipe(filter((event: Event) => event instanceof NavigationEnd))
-			.subscribe(() =>
-				this.onSearch(this.route.snapshot.paramMap.get("name"), this.currentIndex)
-			);
+			.subscribe(() => this.onSearch(this.route.snapshot.paramMap.get("name"), 1));
 	}
 
 	ngOnInit(): void {}
-
-	counter(i: number) {
-		return new Array(i);
-	}
 
 	//handling the visibility of the card - to show or hide more details
 	show(targetMovie: string, currentMovie: string) {
@@ -53,6 +48,7 @@ export class MovieListComponent implements OnInit {
 
 	onSearch(term, pageId) {
 		this.currentMovieName = term;
+
 		this.currentIndex = pageId;
 
 		this.moviesService.search(term, pageId).subscribe((response) => {

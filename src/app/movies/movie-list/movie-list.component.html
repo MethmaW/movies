@@ -21,11 +21,17 @@
 	<span (click)="onSearch(currentMovieName, currentIndex - 1)">&laquo;</span>
 	<ng-container>
 		<span
-			*ngFor="let in of counter(5); let i = index"
+			*ngFor="let in of initialPagination; let i = index"
 			(click)="onSearch(currentMovieName, i + 1)"
 			[ngClass]="{ active: currentIndex === i + 1 }"
 			>{{ i + 1 }}</span
 		>
 	</ng-container>
+
+	<ng-container *ngIf="currentIndex > 5">
+		<span>...</span>
+		<span class="active">{{ currentIndex }}</span>
+	</ng-container>
+
 	<span (click)="onSearch(currentMovieName, currentIndex + 1)">&raquo;</span>
 </div>
