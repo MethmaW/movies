@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 @Component({
 	selector: "app-search-bar",
@@ -6,10 +6,6 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 	styleUrls: ["./search-bar.component.css"],
 })
 export class SearchBarComponent implements OnInit {
-	@Output() submitted = new EventEmitter<string>();
-
-	searchIndex: string = "";
-
 	searchForm = new FormGroup({
 		movieName: new FormControl("", [
 			Validators.required,
@@ -21,9 +17,14 @@ export class SearchBarComponent implements OnInit {
 
 	ngOnInit(): void {}
 
-	//passing the value to the parent (movies-home) with the serach index to call the service
+	//saving the last searched movie name to the local storage
 	onSubmitSearch(name: string) {
 		localStorage.setItem("lastMovie", name);
-		this.submitted.emit(name);
+	}
+
+	//handling input field errors
+	showErrors() {
+		const { dirty, touched, errors } = this.searchForm.get("movieName");
+		return dirty && touched && errors;
 	}
 }

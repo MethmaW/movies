@@ -9,15 +9,11 @@
 			(submit)="onSubmitSearch(searchForm.controls.movieName.value)"
 		>
 			<label>Search a movie: </label>
+			<input class="input" [formControl]="$any(searchForm.get('movieName'))" />
 
-			<input
-				type="text"
-				class="input"
-				[formControl]="$any(searchForm.controls.movieName)"
-			/>
 			&nbsp;
 
-			<a [routerLink]="['/movies', searchForm.controls.movieName.value]">
+			<a [routerLink]="['./', searchForm.controls.movieName.value]">
 				<button
 					[disabled]="searchForm.invalid"
 					[ngClass]="{ disable: searchForm.invalid }"
@@ -28,29 +24,18 @@
 				</button></a
 			>
 
-			<div
-				*ngIf="
-					searchForm.controls.movieName.errors?.required &&
-					searchForm.controls.movieName.touched
-				"
-				class="help is-danger"
-			>
-				<p class="errorMessage">Value is required</p>
-			</div>
-
-			<div
-				*ngIf="
-					searchForm.controls.movieName.errors?.minlength &&
-					searchForm.controls.movieName.touched
-				"
-				class="help is-danger"
-			>
-				<p class="errorMessage">
+			<div class="errorMessage" *ngIf="showErrors()">
+				<p *ngIf="searchForm.get('movieName').errors.required">Value is required</p>
+				<p *ngIf="searchForm.get('movieName').errors.minlength">
 					Value you entered is
-					{{ searchForm.controls.movieName.errors?.minlength.actualLength }}
-					characters long, But it must be at least
-					{{ searchForm.controls.movieName.errors?.minlength.requiredLength }}
-					characters long.
+					{{ searchForm.get("movieName").errors.minlength.actualLength }}
+					characters long, but it must be at least
+					{{ searchForm.get("movieName").errors.minlength.requiredLength }}
+					characters
+				</p>
+
+				<p *ngIf="searchForm.get('movieName').errors.noConnection">
+					No internet connection
 				</p>
 			</div>
 		</form>

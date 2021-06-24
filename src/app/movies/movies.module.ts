@@ -9,6 +9,9 @@ import { MoviesHomeComponent } from "./movies-home/movies-home.component";
 import { MovieCardComponent } from "./movie-card/movie-card.component";
 import { MessageComponent } from "./message/message.component";
 
+import { SharedModule } from "../shared/shared.module";
+import { LandingPageComponent } from './landing-page/landing-page.component';
+
 @NgModule({
 	declarations: [
 		SearchBarComponent,
@@ -16,7 +19,13 @@ import { MessageComponent } from "./message/message.component";
 		MoviesHomeComponent,
 		MovieCardComponent,
 		MessageComponent,
+  LandingPageComponent,
 	],
-	imports: [CommonModule, MoviesRoutingModule, ReactiveFormsModule],
+	imports: [
+		CommonModule,
+		MoviesRoutingModule,
+		ReactiveFormsModule,
+		SharedModule,
+	],
 })
 export class MoviesModule {}

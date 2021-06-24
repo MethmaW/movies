@@ -1,7 +1,2 @@
-<app-search-bar (submitted)="onSearch($event)"></app-search-bar>
-<app-message
-	*ngIf="!showMessage || moviesList === undefined"
-	[type]="moviesList == undefined ? 'error' : 'default'"
->
-	{{ message }}
-</app-message>
+<app-search-bar></app-search-bar>
+<router-outlet></router-outlet>
